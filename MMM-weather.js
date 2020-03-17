@@ -276,7 +276,7 @@ Module.register("MMM-weather",{
 			temp: this.roundValue(current.main.temp),
 			maxTemp: this.roundValue(current.main.temp_max),
 			minTemp: this.roundValue(current.main.temp_min),
-			rain: this.roundValue(this.loadedData.forecast.list[0].rain ?? 0),
+			rain: this.roundValue(this.loadedData.forecast.list[0].rain),
 		}
 
 		this.forecast = [];
@@ -328,6 +328,9 @@ Module.register("MMM-weather",{
 	 * return string - Rounded Temperature.
 	 */
 	roundValue: function(temperature) {
+		if (isNaN(temperature)) {
+			return 0;
+		}
 		return parseFloat(temperature).toFixed(0);
 	}
 });
