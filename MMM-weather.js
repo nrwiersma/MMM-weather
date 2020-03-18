@@ -271,12 +271,13 @@ Module.register("MMM-weather",{
 		}
 
 		var current = this.loadedData.current;
+		var today = this.loadedData.forecast.list[0];
 		this.current = {
-			icon: this.config.iconTable[current.weather[0].icon],
+			icon: this.config.iconTable[today.weather[0].icon],
 			temp: this.roundValue(current.main.temp),
-			maxTemp: this.roundValue(current.main.temp_max),
-			minTemp: this.roundValue(current.main.temp_min),
-			rain: this.roundValue(this.loadedData.forecast.list[0].rain),
+			maxTemp: this.roundValue(today.temp.max),
+			minTemp: this.roundValue(today.temp.min),
+			rain: this.roundValue(today.rain),
 		}
 
 		this.forecast = [];
