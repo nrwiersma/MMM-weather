@@ -277,7 +277,7 @@ Module.register("MMM-weather",{
 			temp: this.roundValue(current.main.temp),
 			maxTemp: this.roundValue(today.temp.max),
 			minTemp: this.roundValue(today.temp.min),
-			rain: this.roundValue(today.rain),
+			rain: this.ishValue(today.rain),
 		}
 
 		this.forecast = [];
@@ -333,5 +333,28 @@ Module.register("MMM-weather",{
 			return 0;
 		}
 		return parseFloat(temperature).toFixed(0);
+	},
+
+	/* function(val)
+	 * Rounds an integer to a positive integer using `~` for less than 1.
+	 *
+	 * argument val - Integer.
+	 *
+	 * return string - Rounded Integer.
+	 */
+	ishValue: function(val) {
+		console.log(val);
+		if (isNaN(val)) {
+			return 0;
+		}
+
+		var v = parseFloat(val);
+		if (v <= 0) {
+			return 0;
+		} else if (v < 1) {
+			return "~1";
+		}
+
+		return v.toFixed(0);
 	}
 });
